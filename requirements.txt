@@ -5,3 +5,11 @@ djangorestframework==3.14.0
 pytz==2023.2
 sqlparse==0.4.3
 tzdata==2023.2
+whitenoise
+gunicorn
+Pillow
+channels
+channels_redis
+weasyprint
+dj-database-url
+psycopg2-binary
