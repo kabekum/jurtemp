@@ -13,3 +13,4 @@ channels_redis
 weasyprint
 dj-database-url
 psycopg2-binary
+daphne
