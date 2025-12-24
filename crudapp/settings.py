@@ -163,4 +163,4 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.BrowsableAPIRenderer',
     ]
 }
-CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ALLOWED_ORIGINS','http://localhost:3000,http://localhost:8000','https://tstfwkk.onrender.com/').split(',')
+CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ALLOWED_ORIGINS','http://localhost:3000,http://localhost:8000','https://tstfwkk.onrender.com').split(',')
