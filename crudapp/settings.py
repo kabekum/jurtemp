@@ -61,6 +61,15 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'crudapp.urls'
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/login/'
+
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = False
+SESSION_COOKIE_HTTPONLY = True
+CSRF_TRUSTED_ORIGINS = ['https://juratemp.onrender.com']
 
 TEMPLATES = [
     {
