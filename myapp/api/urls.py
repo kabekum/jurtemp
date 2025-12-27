@@ -1,6 +1,7 @@
 from rest_framework.routers import DefaultRouter
 from django.urls import path
 from .views import *
+from .views import session_login, session_logout, dashboard
 
 router = DefaultRouter()
 router.register('users', UserViewSet)
