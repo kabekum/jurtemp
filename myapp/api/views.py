@@ -8,6 +8,11 @@ from django.conf import settings
 from myapp.models import *
 from .serializers import *
 
+from django.contrib.auth import authenticate, login, logout
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
+
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -77,3 +82,42 @@ class NotificationViewSet(viewsets.ModelViewSet):
 class ActivityLogViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = ActivityLog.objects.all().order_by('-timestamp')
     serializer_class = ActivityLogSerializer
+
+
+@require_POST
+def session_login(request):
+    """
+    Session-based login.
+    CSRF is enforced automatically.
+    """
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+
+    user = authenticate(
+        request,
+        username=username,
+        password=password
+    )
+
+    if user is None:
+        return JsonResponse(
+            {'error': 'Invalid username or password'},
+            status=401
+        )
+
+    login(request, user)
+    return JsonResponse({'success': True})
+
+
+@login_required
+def dashboard(request):
+    return JsonResponse({
+        'message': 'You are logged in',
+        'user': request.user.username
+    })
+
+
+def session_logout(request):
+    logout(request)
+    return JsonResponse({'success': True})
+
