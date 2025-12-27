@@ -19,3 +19,8 @@ router.register('notifications', NotificationViewSet)
 router.register('activity-logs', ActivityLogViewSet)
 
 urlpatterns = router.urls
+urlpatterns += [
+    path('api/login/', session_login, name='session_login'),
+    path('api/logout/', session_logout, name='session_logout'),
+    path('api/dashboard/', dashboard, name='dashboard'),
+]
